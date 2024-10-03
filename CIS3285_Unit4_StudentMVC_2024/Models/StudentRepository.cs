@@ -1,6 +1,6 @@
 ﻿namespace CIS3285_Unit4_StudentMVC_2024.Models
 {
-    public class StudentRepository : IStudentCRUDInterface
+    public class StudentRepository : IStudentInterface
     {
         static List<StudentModel> myStudents = new List<StudentModel>();
 
@@ -12,17 +12,18 @@
                 myStudents.Add(new StudentModel(1001, "Tom", 16));
                 myStudents.Add(new StudentModel(1002, "Jen", 8));
                 myStudents.Add(new StudentModel(1003, "Sabah", 16));
+                myStudents.Add(new StudentModel(1004, "John", 8));
             }
 
         }
 
-        public List<StudentModel> getAllStudent()
+        public List<IStudentInterface> getAllStudent()
         {
             return myStudents;
         }
 
 
-        public StudentModel getStudentById(int id)
+        public IStudentInterface getStudentById(int id)
         {
             //Console.WriteLine("Getting student with id = " + id);
             //return myStudents.Find(s => s.Id == id);
