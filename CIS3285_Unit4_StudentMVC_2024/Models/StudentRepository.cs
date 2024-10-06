@@ -1,8 +1,8 @@
 ﻿namespace CIS3285_Unit4_StudentMVC_2024.Models
 {
-    public class StudentRepository : IStudentInterface
+    public class StudentRepository : IStudentCRUDInterface
     {
-        static List<StudentModel> myStudents = new List<StudentModel>();
+        static List<IStudentInterface> myStudents = new List<IStudentInterface>();
 
         public StudentRepository()
         {
@@ -12,7 +12,6 @@
                 myStudents.Add(new StudentModel(1001, "Tom", 16));
                 myStudents.Add(new StudentModel(1002, "Jen", 8));
                 myStudents.Add(new StudentModel(1003, "Sabah", 16));
-                myStudents.Add(new StudentModel(1004, "John", 8));
             }
 
         }
@@ -27,7 +26,7 @@
         {
             //Console.WriteLine("Getting student with id = " + id);
             //return myStudents.Find(s => s.Id == id);
-            foreach (StudentModel student in myStudents)
+            foreach (IStudentInterface student in myStudents)
             {
                 if (student.Id == id)
                 {
@@ -35,23 +34,23 @@
                 }
             }
             // if you can't find the correct student return the first one
-            return (nullStudent());
+            return (new NullStudent());
         }
 
 
 
-        public StudentModel getOneStudent(int index)
+        public IStudentInterface getOneStudent(int index)
         {
             return (myStudents[index]);
         }
-        private StudentModel nullStudent()
-        {
-            // create a null student
-            StudentModel nullStudent = new StudentModel(-1, "Null Student", -999);
-            return nullStudent;
-        }
+        /*        private IStudentInterface nullStudent()
+                {
+                    // create a null student
+                    IStudentInterface nullStudent = new NullStudent(-1, "Null Student", -999);
+                    return nullStudent;
+                }*/
 
-        public void AddStudent(StudentModel newStudent)
+        public void AddStudent(IStudentInterface newStudent)
         {
             myStudents.Add(newStudent);
         }
@@ -64,7 +63,7 @@
             myStudents.RemoveAt(index);
         }
 
-        public void UpdateStudent(int studentId, StudentModel updatedStudent)
+        public void UpdateStudent(int studentId, IStudentInterface updatedStudent)
         {
             // search the list for the student that matches the student ID
             // DEBT --- Handle case when student id not found and index is -1

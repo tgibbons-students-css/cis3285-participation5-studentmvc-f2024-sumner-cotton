@@ -8,7 +8,7 @@ namespace CIS3285_Unit4_StudentMVC_2024.Controllers
     {
         // Our link to the list of students in the Models folder
         IStudentCRUDInterface studentRepo = new StudentRepository();
-        
+
         public StudentController()
         {
             // we are not currently using this constructor 
@@ -42,7 +42,7 @@ namespace CIS3285_Unit4_StudentMVC_2024.Controllers
             // The collection is a map that contains the data fields
             try
             {
-               IStudentInterface newStudent = new IStudentInterface();
+                IStudentInterface newStudent = new StudentModel();
                 // Retrieve form data using form collection
                 newStudent.Id = Int32.Parse(collection["Id"]);
                 newStudent.Name = collection["Name"];
@@ -73,7 +73,7 @@ namespace CIS3285_Unit4_StudentMVC_2024.Controllers
             // The collection is a map that contains the data fields from the view
             try
             {
-                IStudentInterface updatedStudent = new IStudentInterface();
+                IStudentInterface updatedStudent = new StudentModel();
                 // Retrieve form data using form collection
                 updatedStudent.Id = id;
                 updatedStudent.Name = collection["Name"];
